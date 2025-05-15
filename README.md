@@ -12,7 +12,7 @@ This project is a **Car Price Prediction App** that predicts the selling price o
 - Clean and user-friendly UI built with Jetpack Compose.
 - Backend API for prediction hosted on Render: [API Endpoint](https://car-predict-cqb9.onrender.com/predict)
 
----
+```
 
 ## 📂 Project Structure
 📦Car Price Prediction
@@ -32,7 +32,7 @@ This project is a **Car Price Prediction App** that predicts the selling price o
 ├── README.md
 └── requirements.txt
 
----
+```
 
 ## 🔍 Backend (Flask API)
 
