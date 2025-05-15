@@ -76,3 +76,59 @@ with open('car_model_columns.pkl', 'wb') as f:
 
 print("✅ Model trained and saved successfully.")
 
+```
+📱 Android App (Jetpack Compose)
+The Android application is built with Jetpack Compose and communicates with the backend to predict car prices based on user inputs.
+
+🔨 Key Technologies:
+Kotlin
+
+Jetpack Compose
+
+Retrofit for API Calls
+
+Material3 Design
+
+🔧 Setup
+Open the project in Android Studio.
+
+Add Internet permission in AndroidManifest.xml:
+<uses-permission android:name="android.permission.INTERNET" />
+Run the app on an emulator or physical device.
+
+🛠️ Usage
+Enter the car details (Brand, Model, Age, etc.).
+
+Click the Predict Price button.
+
+Wait for the API to respond and display the predicted price.
+
+🌐 API Reference
+POST /predict
+
+Request Body (JSON):
+```
+{
+  "brand": "Maruti",
+  "model": "Swift",
+  "vehicle_age": 3,
+  "km_driven": 40000,
+  "seller_type": "Individual",
+  "fuel_type": "Petrol",
+  "transmission_type": "Manual",
+  "mileage": 20.0,
+  "engine": 1197,
+  "max_power": 82.0,
+  "seats": 5
+}
+```
+Response (JSON):
+```
+{
+  "predicted_price": 350000
+}
+```
+
+Author
+Build by Raghuraj , Dhruv and Sarthak
+For any issues or inquiries, please contact me at [raghuraj7210@gmail.com].
