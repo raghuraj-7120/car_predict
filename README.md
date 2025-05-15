@@ -37,6 +37,57 @@ This project is a **Car Price Prediction App** that predicts the selling price o
 ## 🔍 Backend (Flask API)
 
 The backend is a Flask API that takes car details as input and returns the predicted selling price. The model is trained using a **RandomForestRegressor** on a dataset of car specifications and prices.
+``` python
+
+from flask import Flask, request, jsonify
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "✅ Car Price Prediction API is up and running!"
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        # Lazy loading of the model and column names
+        with open('car_price_model.pkl', 'rb') as f:
+            model = pickle.load(f)
+
+        with open('car_model_columns.pkl', 'rb') as f:
+            model_columns = pickle.load(f)
+
+        # JSON input
+        input_data = request.get_json()
+
+        # Validate input
+        if not input_data:
+            return jsonify({'error': 'No input data provided'}), 400
+        
+        # Create input array in correct column order
+        input_array = [0] * len(model_columns)
+        for i, col in enumerate(model_columns):
+            input_array[i] = input_data.get(col, 0)
+
+        input_array = np.array(input_array).reshape(1, -1)
+
+        # Make prediction
+        prediction = model.predict(input_array)
+        
+        return jsonify({'predicted_price': round(prediction[0], 2)})
+
+    except FileNotFoundError as fnf_error:
+        return jsonify({'error': f'Model file not found: {fnf_error}'}), 500
+
+    except Exception as e:
+        return jsonify({'error': f'An error occurred: {str(e)}'}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+```
 
 ### 📝 Model Training
 
